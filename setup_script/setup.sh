@@ -11,7 +11,7 @@ me=${0##*/}
 
 # The variables in this block can be changed to suit the users preference
 
-project_name=i"robotics_class"
+project_name="robotics_class"
 project_name_c="Robotics Class"
 
 # The variables below should be altered appropriately once the functionality
@@ -179,6 +179,11 @@ if [[ 2 -gt $(docker images $project_name | wc -l) ]]; then
     echo "pushd \"$my_loc\" > /dev/null; bash ./${0##*/} \"\$@\"; popd > /dev/null;" > "$HOME/bin/${project_name}"
     sudo chmod +x "$HOME/bin/${project_name}"
 
+    if [[ ! -d "$local_host_mount" ]]; then
+      install -d $local_host_mount
+      chown $USER:$USER -R $local_host_mount
+    fi
+
 
     ####### BLOCKING CONDITIONAL ########
     ####### BLOCKING CONDITIONAL ########
@@ -335,7 +340,7 @@ $docker_cmd run                                                         \
     --privileged                                                        \
     --cap-add=SYS_PTRACE --security-opt seccomp=unconfined              \
     -v $local_host_mount/bash_history:$home/.bash_history               \
-    -v $local_host_mont:$home/host                                      \
+    -v $local_host_mount:$home/host                                      \
     -v /dev/bus/usb:/dev/bus/usb                                        \
     -v "${sandbox}:$home/sandbox"                                       \
     -v "${catkin_ws}:$home/sandbox/catkin_ws"                           \
