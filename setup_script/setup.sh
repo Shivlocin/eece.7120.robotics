@@ -54,7 +54,7 @@ clihelp="$clihelp\t This script constructs a universal environment to aid\n"
 clihelp="$clihelp\t students by ensuring their development environment\n"
 clihelp="$clihelp\t for the class is built and configured properly.\n\n"
 
-clihelp="$clihelp\t This degree of consistency also simplifies troubleshooting\t"
+clihelp="$clihelp\t This degree of consistency also simplifies troubleshooting\n"
 clihelp="$clihelp\t by minimizing environmental inconsistencies such as an\n"
 clihelp="$clihelp\t an improperly configured network stack or broken toolchain\n"
 
@@ -122,8 +122,9 @@ do
       shift
       ;;
     -h|--help)
-      echo $clihelp
-      echo $options
+      echo -e $clihelp
+      echo -e $options
+      exit 0
       shift
       ;;
     -b|--branch)
@@ -132,7 +133,7 @@ do
       shift
       ;;
     *)
-      echo $options
+      echo -e $options
       exit 1;
       shift
       ;;
