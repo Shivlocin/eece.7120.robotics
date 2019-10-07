@@ -1,0 +1,7 @@
+<launch>
+	<node name="obstacle_reporter_node"
+		  pkg="obstacle_reporter"
+		  type="obstacle_reporter_node"
+		  output="screen"
+		  />
+</launch>
