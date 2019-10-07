@@ -1,0 +1,5 @@
+<launch>
+	<include file="$(find point_generator)/launch/point_generator.launch" />
+	<include file="$(find obstacle_labeler)/launch/obstacle_labeler.launch" />
+	<include file="$(find obstacle_reporter)/launch/obstacle_reporter.launch" />
+</launch>
