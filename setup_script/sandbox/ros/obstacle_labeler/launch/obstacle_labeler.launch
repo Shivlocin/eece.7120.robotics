@@ -1,7 +1,0 @@
-<launch>
-	<node name="obstacle_labeler_node"
-		  pkg="obstacle_labeler"
-		  type="obstacle_labeler_node"
-		  output="screen"
-		  />
-</launch>

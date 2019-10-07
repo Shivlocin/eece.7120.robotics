@@ -1,7 +1,0 @@
-<launch>
-	<node name="point_generator_node"
-		  pkg="point_generator"
-		  type="point_generator_node"
-		  output="screen"
-		  />
-</launch>
