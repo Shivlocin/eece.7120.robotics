@@ -7,12 +7,12 @@ def lane_filter(image):
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     
     # Filter for only white pixels. Experiment with values as needed
-    white_filter = cv2.inRange(hsv, (0,50,0), (255,180,255))
+    white_filter = cv2.inRange(hsv, (0,0,0), (180,35,255))
     cv2.imshow("White Filter", white_filter)
     cv2.imwrite("white_filter.png", white_filter)
     
     # Filter for only yellow pixels. Experiment with values as needed
-    yellow_filter = cv2.inRange(hsv, (0,50,0), (140,255,255))
+    yellow_filter = cv2.inRange(hsv, (26,77,178), (31,255,255))
     cv2.imshow("Yellow Filter", yellow_filter)
     cv2.imwrite("yellow_filter.png", yellow_filter)
     
