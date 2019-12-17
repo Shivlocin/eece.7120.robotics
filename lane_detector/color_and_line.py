@@ -1,6 +1,30 @@
 #!/usr/bin/env python
 import sys
 import cv2
+import numpy as np
+
+
+def get_lines(original_image, filtered_image):
+    # do our hough transform on the white image
+    # resolution: 1 pixel radius, 1 degree rotational
+    r_res = 1
+    theta_res = np.pi / 180
+    # threshold: number of intersections to define a line
+    thresh = 1
+    # min_length: minimum number of points to form a line
+    min_length = 1
+    # max_gap: maximum gap between two points to be considered a line
+    max_gap = 20
+    lines = cv2.HoughLinesP(filtered_image, r_res, theta_res, thresh, np.empty(1), min_length, max_gap)
+
+    output = np.copy(original_image)
+    if lines is not None:
+        # grab the first line
+        for i in range(len(lines)):
+            print(lines[i])
+            l = lines[i][0]
+            cv2.line(output, (l[0], l[1]), (l[2], l[3]), (0, 0, 255), 3, cv2.LINE_AA)
+    return output
 
 def lane_filter(image):
     # The incoming image is BGR format, convert it to HSV
@@ -43,6 +67,14 @@ def lane_filter(image):
     yellow_edges = cv2.bitwise_and(yellow_dilate, edges)
     cv2.imshow("Yellow Edges", yellow_edges)
     cv2.imwrite("yellow_edges.png", yellow_edges)
+
+    white_output = get_lines(image, white_edges)
+    yellow_output = get_lines(image, yellow_edges)
+
+    cv2.imshow("White Output", white_output)
+    cv2.imwrite("white_output.png", white_output)
+    cv2.imshow("Yellow Output", yellow_output)
+    cv2.imwrite("yellow_output.png", yellow_output)
     
     # Wait for key press to close images
     cv2.waitKey()
