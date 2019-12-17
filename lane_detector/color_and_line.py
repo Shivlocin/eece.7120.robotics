@@ -10,11 +10,11 @@ def get_lines(original_image, filtered_image):
     r_res = 1
     theta_res = np.pi / 180
     # threshold: number of intersections to define a line
-    thresh = 1
+    thresh = 9  # Default of 1
     # min_length: minimum number of points to form a line
-    min_length = 1
+    min_length = 10  # Default 1
     # max_gap: maximum gap between two points to be considered a line
-    max_gap = 20
+    max_gap = 5
     lines = cv2.HoughLinesP(filtered_image, r_res, theta_res, thresh, np.empty(1), min_length, max_gap)
 
     output = np.copy(original_image)
@@ -26,6 +26,7 @@ def get_lines(original_image, filtered_image):
             cv2.line(output, (l[0], l[1]), (l[2], l[3]), (0, 0, 255), 3, cv2.LINE_AA)
     return output
 
+
 def lane_filter(image):
     # The incoming image is BGR format, convert it to HSV
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
@@ -36,7 +37,7 @@ def lane_filter(image):
     cv2.imwrite("white_filter.png", white_filter)
     
     # Filter for only yellow pixels. Experiment with values as needed
-    yellow_filter = cv2.inRange(hsv, (26,77,178), (31,255,255))
+    yellow_filter = cv2.inRange(hsv, (20,65,178), (32,255,255))
     cv2.imshow("Yellow Filter", yellow_filter)
     cv2.imwrite("yellow_filter.png", yellow_filter)
     
