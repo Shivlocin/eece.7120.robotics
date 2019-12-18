@@ -1,0 +1,8 @@
+<launch>
+
+
+  <param name="/jmouse/line_detector_node/verbose" value="true" />
+
+  <node pkg="mini_project_3" type="lane_follow_custom.py" name="lane_follow_custom" />
+
+</launch>
