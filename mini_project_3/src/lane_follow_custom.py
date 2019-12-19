@@ -104,7 +104,7 @@ class FunHouse:
 if __name__ == "__main__":
 
     # Create the node
-    rospy.init_node('lane_follow_custom', anonymouse=False)
+    rospy.init_node('lane_follow_custom', anonymous=False)
 
     # Instantiate a FunHouse class. This is where the magic happens.
     fun_class = FunHouse()
