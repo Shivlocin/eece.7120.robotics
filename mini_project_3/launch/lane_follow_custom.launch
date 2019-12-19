@@ -1,5 +1,5 @@
 <launch>
-
+  <include file="$(find duckietown_demos)/launch/indefinite_navigation.launch" />
 
   <param name="/jmouse/line_detector_node/verbose" value="true" />
 
