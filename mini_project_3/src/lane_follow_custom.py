@@ -44,7 +44,7 @@ class FunHouse:
         self.y_out_pub.publish(self.bridge.cv2_to_imgmsg(self.y_img, "bgr8"))
 
 
-
+    # Everything below this and above main is cut/paste from homework 8
     def lane_filter(self, image):
         # The incoming image is BGR format, convert it to HSV
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
